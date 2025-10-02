@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:CoreDataProject"
+      name = "CoreDataProject">
+      <FileRef
+         location = "group:CoreDataProject.xcodeproj">
+      </FileRef>
+      <Group
+         location = "group:CoreDataProject"
+         name = "CoreDataProject">
+         <Group
+            location = "group:Core"
+            name = "Core">
+            <FileRef
+               location = "group:CoreDataService.swift">
+            </FileRef>
+            <FileRef
+               location = "group:PersistentContainer.swift">
+            </FileRef>
+            <FileRef
+               location = "group:CoreDataEngine.swift">
+            </FileRef>
+            <FileRef
+               location = "group:ManagedObject.swift">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Assets.xcassets">
+         </FileRef>
+         <Group
+            location = "group:Models"
+            name = "Models">
+            <FileRef
+               location = "group:CoreDataModel.xcdatamodeld">
+            </FileRef>
+            <FileRef
+               location = "group:User.swift">
+            </FileRef>
+            <FileRef
+               location = "group:UserModel+CoreDataClass.swift">
+            </FileRef>
+            <FileRef
+               location = "group:UserModel+CoreDataProperties.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Presentation"
+            name = "Presentation">
+            <FileRef
+               location = "group:CoreDataProjectApp.swift">
+            </FileRef>
+            <FileRef
+               location = "group:ViewModel.swift">
+            </FileRef>
+            <FileRef
+               location = "group:ContentView.swift">
+            </FileRef>
+         </Group>
+      </Group>
+      <Group
+         location = "group:CoreDataProjectTests"
+         name = "CoreDataProjectTests">
+         <Group
+            location = "group:Tests"
+            name = "Tests">
+            <FileRef
+               location = "group:CoreDataServiceTests.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Helpers"
+            name = "Helpers">
+            <Group
+               location = "group:Models"
+               name = "Models">
+            </Group>
+         </Group>
+      </Group>
+   </Group>
+</Workspace>
