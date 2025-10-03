@@ -20,7 +20,7 @@ Each service is implemented as a separate project to keep responsibilities clear
   Service with CRUD operations for Core Data.
 
 - **RestAPIProject**  
-  Service with REST CRUD operations + session handling.
+  REST API Service with session handling.
 
 *(More services will be added as the workspace grows.)*
 
