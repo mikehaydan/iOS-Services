@@ -27,69 +27,6 @@ extension URLSession: URLSessionProtocol {
     }
 }
 
-//
-//protocol URLSessionProtocol: Sendable {
-//    @discardableResult
-//    func startDataTask(
-//        with url: URL,
-//        completionHandler: @Sendable @escaping (Data?, URLResponse?, Error?) -> Void
-//    ) -> TaskCancellable
-//
-//    @discardableResult
-//    func startDataTask(
-//        with urlRequest: URLRequest,
-//        completionHandler: @Sendable @escaping (Data?, URLResponse?, Error?) -> Void
-//    ) -> TaskCancellable
-//
-//    func startDataTask(
-//        with urlRequest: URLRequest
-//    ) async -> URLSessionDataTaskResponse
-//
-//    func download(
-//        from url: URL,
-//        delegate: (URLSessionTaskDelegate)?
-//    ) async throws -> (URL, URLResponse)
-//}
-//
-//extension URLSession: URLSessionProtocol {
-//    @discardableResult
-//    func startDataTask(
-//        with url: URL,
-//        completionHandler: @Sendable @escaping (Data?, URLResponse?, Error?) -> Void
-//    ) -> TaskCancellable {
-//        let task = dataTask(with: url, completionHandler: completionHandler)
-//        task.resume()
-//        return task
-//    }
-//
-//    @discardableResult
-//    func startDataTask(
-//        with urlRequest: URLRequest,
-//        completionHandler: @Sendable @escaping (Data?, URLResponse?, Error?) -> Void
-//    ) -> TaskCancellable {
-//        let task = dataTask(with: urlRequest, completionHandler: completionHandler)
-//        task.resume()
-//        return task
-//    }
-//
-//    func startDataTask(with urlRequest: URLRequest) async -> URLSessionDataTaskResponse {
-//        do {
-//            let response = try await data(for: urlRequest)
-//            return URLSessionDataTaskResponse(
-//                data: response.0,
-//                response: response.1,
-//                error: nil
-//            )
-//        } catch {
-//            return URLSessionDataTaskResponse(
-//                data: nil,
-//                response: nil,
-//                error: error
-//            )
-//        }
-//    }
-//}
-//
 extension URLSessionDataTask: TaskCancellable {
     func cancelTask() {
         cancel()
