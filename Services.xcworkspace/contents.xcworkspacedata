@@ -14,13 +14,13 @@
             location = "group:Core"
             name = "Core">
             <Group
-               location = "group:Environment"
-               name = "Environment">
+               location = "group:APIClient"
+               name = "APIClient">
                <FileRef
-                  location = "group:EnvironmentConfiguration.swift">
+                  location = "group:APIClient.swift">
                </FileRef>
                <FileRef
-                  location = "group:URLRequestBuilder.swift">
+                  location = "group:RESTClient.swift">
                </FileRef>
             </Group>
             <Group
@@ -34,16 +34,20 @@
                </FileRef>
             </Group>
             <Group
-               location = "group:Requests"
-               name = "Requests">
+               location = "group:Environment"
+               name = "Environment">
                <FileRef
-                  location = "group:PostRefresh.swift">
+                  location = "group:EnvironmentConfiguration.swift">
                </FileRef>
                <FileRef
-                  location = "group:PostLogin.swift">
+                  location = "group:URLRequestBuilder.swift">
                </FileRef>
+            </Group>
+            <Group
+               location = "group:Extensions"
+               name = "Extensions">
                <FileRef
-                  location = "group:GetMe.swift">
+                  location = "group:URLRequestExtensions.swift">
                </FileRef>
             </Group>
             <Group
@@ -57,16 +61,42 @@
                </FileRef>
             </Group>
             <Group
-               location = "group:Sesion"
-               name = "Sesion">
+               location = "group:Models"
+               name = "Models">
+               <Group
+                  location = "group:APIModels"
+                  name = "APIModels">
+                  <FileRef
+                     location = "group:UserAuthAPIModel.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:UserAPIModel.swift">
+                  </FileRef>
+               </Group>
                <FileRef
-                  location = "group:Session.swift">
+                  location = "group:APIError.swift">
                </FileRef>
                <FileRef
-                  location = "group:SessionHandler.swift">
+                  location = "group:EmptyResponse.swift">
                </FileRef>
                <FileRef
-                  location = "group:SessionHandlerImpl.swift">
+                  location = "group:HTTPHeader.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:HTTPMethod.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Protocols"
+               name = "Protocols">
+               <FileRef
+                  location = "group:APIRequest.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:TaskCancellable.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:URLSessionProtocol.swift">
                </FileRef>
             </Group>
             <Group
@@ -87,59 +117,29 @@
                </FileRef>
             </Group>
             <Group
-               location = "group:APIClient"
-               name = "APIClient">
+               location = "group:Requests"
+               name = "Requests">
                <FileRef
-                  location = "group:APIClient.swift">
+                  location = "group:PostRefresh.swift">
                </FileRef>
                <FileRef
-                  location = "group:RESTClient.swift">
+                  location = "group:PostLogin.swift">
                </FileRef>
-            </Group>
-            <Group
-               location = "group:Extensions"
-               name = "Extensions">
                <FileRef
-                  location = "group:URLRequestExtensions.swift">
+                  location = "group:GetMe.swift">
                </FileRef>
             </Group>
             <Group
-               location = "group:Protocols"
-               name = "Protocols">
+               location = "group:Sesion"
+               name = "Sesion">
                <FileRef
-                  location = "group:APIRequest.swift">
+                  location = "group:Session.swift">
                </FileRef>
                <FileRef
-                  location = "group:TaskCancellable.swift">
+                  location = "group:SessionHandler.swift">
                </FileRef>
                <FileRef
-                  location = "group:URLSessionProtocol.swift">
-               </FileRef>
-            </Group>
-            <Group
-               location = "group:Models"
-               name = "Models">
-               <Group
-                  location = "group:APIModels"
-                  name = "APIModels">
-                  <FileRef
-                     location = "group:UserAuthAPIModel.swift">
-                  </FileRef>
-                  <FileRef
-                     location = "group:UserAPIModel.swift">
-                  </FileRef>
-               </Group>
-               <FileRef
-                  location = "group:APIError.swift">
-               </FileRef>
-               <FileRef
-                  location = "group:HTTPHeader.swift">
-               </FileRef>
-               <FileRef
-                  location = "group:HTTPMethod.swift">
-               </FileRef>
-               <FileRef
-                  location = "group:EmptyResponse.swift">
+                  location = "group:SessionHandlerImpl.swift">
                </FileRef>
             </Group>
          </Group>
@@ -181,16 +181,16 @@
             location = "group:Core"
             name = "Core">
             <FileRef
-               location = "group:CoreDataService.swift">
-            </FileRef>
-            <FileRef
-               location = "group:PersistentContainer.swift">
-            </FileRef>
-            <FileRef
                location = "group:CoreDataEngine.swift">
             </FileRef>
             <FileRef
+               location = "group:CoreDataService.swift">
+            </FileRef>
+            <FileRef
                location = "group:ManagedObject.swift">
+            </FileRef>
+            <FileRef
+               location = "group:PersistentContainer.swift">
             </FileRef>
          </Group>
          <FileRef
