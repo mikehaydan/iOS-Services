@@ -2,6 +2,173 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "group:RestAPIProject"
+      name = "RestAPIProject">
+      <FileRef
+         location = "group:RestAPIProject.xcodeproj">
+      </FileRef>
+      <Group
+         location = "group:RestAPIProject"
+         name = "RestAPIProject">
+         <Group
+            location = "group:Core"
+            name = "Core">
+            <Group
+               location = "group:Environment"
+               name = "Environment">
+               <FileRef
+                  location = "group:EnvironmentConfiguration.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:URLRequestBuilder.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:APIService"
+               name = "APIService">
+               <FileRef
+                  location = "group:APIService.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:APIServiceImpl.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Requests"
+               name = "Requests">
+               <FileRef
+                  location = "group:PostRefresh.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:PostLogin.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:GetMe.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Keychain"
+               name = "Keychain">
+               <FileRef
+                  location = "group:Keychain.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:KeychainImpl.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Sesion"
+               name = "Sesion">
+               <FileRef
+                  location = "group:Session.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:SessionHandler.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:SessionHandlerImpl.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:RequestAdapter"
+               name = "RequestAdapter">
+               <FileRef
+                  location = "group:APIRequestAdapter.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:RequestExecutor"
+               name = "RequestExecutor">
+               <FileRef
+                  location = "group:RequestExecutor.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:RESTRequestExecutor.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:APIClient"
+               name = "APIClient">
+               <FileRef
+                  location = "group:APIClient.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:RESTClient.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Extensions"
+               name = "Extensions">
+               <FileRef
+                  location = "group:URLRequestExtensions.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Protocols"
+               name = "Protocols">
+               <FileRef
+                  location = "group:APIRequest.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:TaskCancellable.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:URLSessionProtocol.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Models"
+               name = "Models">
+               <Group
+                  location = "group:APIModels"
+                  name = "APIModels">
+                  <FileRef
+                     location = "group:UserAuthAPIModel.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:UserAPIModel.swift">
+                  </FileRef>
+               </Group>
+               <FileRef
+                  location = "group:APIError.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:HTTPHeader.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:HTTPMethod.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:EmptyResponse.swift">
+               </FileRef>
+            </Group>
+         </Group>
+         <Group
+            location = "group:Presentation"
+            name = "Presentation">
+            <FileRef
+               location = "group:RestAPIProjectApp.swift">
+            </FileRef>
+            <FileRef
+               location = "group:ContentView.swift">
+            </FileRef>
+            <FileRef
+               location = "group:ViewModel.swift">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Assets.xcassets">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:RestAPIProjectTests"
+         name = "RestAPIProjectTests">
+         <FileRef
+            location = "group:RestAPIProjectTests.swift">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
       location = "group:CoreDataProject"
       name = "CoreDataProject">
       <FileRef

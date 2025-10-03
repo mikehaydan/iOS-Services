@@ -17,7 +17,10 @@ Each service is implemented as a separate project to keep responsibilities clear
 ## 🗂 Structure
 
 - **CoreDataProject**  
-  Service with CRUD operations for Core Data.  
+  Service with CRUD operations for Core Data.
+
+- **RestAPIProject**  
+  Service with REST CRUD operations + session handling.
 
 *(More services will be added as the workspace grows.)*
 
