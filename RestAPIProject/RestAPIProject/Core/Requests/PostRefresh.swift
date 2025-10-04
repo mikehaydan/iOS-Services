@@ -15,7 +15,9 @@ struct PostRefresh: APIRequest {
     
     let path: String = "/auth/refresh"
     
-    let refreshToken: String
+    var contentType: HTTPHeader? {
+        .defaultContentType
+    }
     
     var body: Data? {
         try? buildBodyData(from: [
@@ -23,6 +25,8 @@ struct PostRefresh: APIRequest {
             "expiresInMins": "30"
         ])
     }
+    
+    let refreshToken: String
     
     init(refreshToken: String) {
         self.refreshToken = refreshToken

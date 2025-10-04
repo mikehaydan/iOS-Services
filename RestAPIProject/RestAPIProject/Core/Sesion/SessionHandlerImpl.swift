@@ -37,6 +37,9 @@ actor SessionHandlerImpl: SessionAdapter, SessionHandler {
         }
         
         let task = Task<Session, Error> {
+            defer {
+                refreshTask = nil
+            }
             let request = PostRefresh(refreshToken: session.refreshToken)
             guard let urlRequest = requestBuilder.makeURLRequest(from: request) else {
                 throw APIError.invalidRequest
@@ -67,7 +70,7 @@ actor SessionHandlerImpl: SessionAdapter, SessionHandler {
             throw APIError.unAuthorized
         }
         
-        if session.expiresAt < Date() {
+        if session.expiresAt > Date() {
             urlRequest.addHTTPHeader(.authorization(bearerToken: session.accessToken))
         } else {
             let session = try await refresh(session: session)

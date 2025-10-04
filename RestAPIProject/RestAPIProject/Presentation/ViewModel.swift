@@ -31,12 +31,6 @@ final class ViewModel: ObservableObject {
         self.keychain = keychain
     }
     
-    // MARK: - LifeCycle
-    
-    // MARK: - IBActions
-    
-    // MARK: - Private
-    
     // MARK: - Public
     
     @MainActor
@@ -56,6 +50,7 @@ final class ViewModel: ObservableObject {
     func getUser() {
         Task {
             do {
+                self.user = nil
                 let user = try await apiService.getMe()
                 self.user = user
             } catch {
