@@ -51,6 +51,7 @@
 		9B2CCBF52E927C18000AF4E2 /* RestAPIProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CCBD22E927C18000AF4E2 /* RestAPIProjectApp.swift */; };
 		9B2CCBF62E927C18000AF4E2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CCBD32E927C18000AF4E2 /* ViewModel.swift */; };
 		9B2CCBF72E927C18000AF4E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2CCBD52E927C18000AF4E2 /* Assets.xcassets */; };
+		9B4DA49A2E927D5B00FB765D /* FakePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DA4992E927D5B00FB765D /* FakePostRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		9B2CCBD22E927C18000AF4E2 /* RestAPIProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIProjectApp.swift; sourceTree = "<group>"; };
 		9B2CCBD32E927C18000AF4E2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		9B2CCBD52E927C18000AF4E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B4DA4992E927D5B00FB765D /* FakePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePostRequest.swift; sourceTree = "<group>"; };
 		9B59CC612E8E988F004EDC0E /* RestAPIProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestAPIProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B59CC6E2E8E9891004EDC0E /* RestAPIProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestAPIProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -151,6 +153,7 @@
 		9B2CCB8F2E927C18000AF4E2 /* Fake */ = {
 			isa = PBXGroup;
 			children = (
+				9B4DA4992E927D5B00FB765D /* FakePostRequest.swift */,
 				9B2CCB8E2E927C18000AF4E2 /* FakeModel.swift */,
 			);
 			path = Fake;
@@ -531,6 +534,7 @@
 				9B2CCB9E2E927C18000AF4E2 /* DummyURLRequest.swift in Sources */,
 				9B2CCB9F2E927C18000AF4E2 /* FakeModel.swift in Sources */,
 				9B2CCBA02E927C18000AF4E2 /* APIClientSpy.swift in Sources */,
+				9B4DA49A2E927D5B00FB765D /* FakePostRequest.swift in Sources */,
 				9B2CCBA12E927C18000AF4E2 /* KeychainSpy.swift in Sources */,
 				9B2CCBA22E927C18000AF4E2 /* TaskCancellableStub.swift in Sources */,
 				9B2CCBA32E927C18000AF4E2 /* URLRequestBuilderSpy.swift in Sources */,

@@ -141,5 +141,74 @@ struct SessionHandlerTests {
             Issue.record("Error should not be returned")
         }
     }
+    
+    @Test("Testing adapt when no session is present")
+    func testAdaptWhenNoSessionIsPresent() async throws {
+        // Given
+        keychain.retrieveToBeReturned = nil
+        let apiRequest = FakePostRequest()
+        var request = URLRequest.dummy
+        
+        // Then
+        do {
+            _ = try await sut.adapt(&request, apiRequest: apiRequest)
+        } catch let error as APIError {
+            #expect(keychain.retrieveCallCount == 1)
+            #expect(error == .unAuthorized)
+        } catch {
+            Issue.record("API error should be returned")
+        }
+    }
+    
+    @Test("Testing adapt when session has expired")
+    func testAdaptWithExpiredSession() async throws {
+        // Given
+        let session = Session(accessToken: "at", refreshToken: "rt", expiresAt: Date().addingTimeInterval(-1))
+        let apiRequest = FakePostRequest()
+        var request = URLRequest.dummy
+        
+        keychain.retrieveToBeReturned = session
+        requestBuilder.makeURLRequestToBeReturned = .dummy
+        apiClient.sendAsyncResponseToBeReturned = Session(accessToken: "at2", refreshToken: "rt2", expiresAt: Date().addingTimeInterval(20))
+        
+        do {
+            // When
+            try await sut.adapt(&request, apiRequest: apiRequest)
+            
+            // Then
+            #expect(apiClient.sendAsyncRequestCalledCount == 1)
+            #expect(requestBuilder.makeURLRequestCallCount == 1)
+            #expect(keychain.saveCallCount == 1)
+            #expect(keychain.retrieveCallCount == 1)
+            #expect(request.headers.contains(.authorization(bearerToken: "at2")))
+        } catch {
+            Issue.record("API error should be returned")
+        }
+    }
+    
+    @Test("Testing adapt with not expired session")
+    func testAdaptWithNotExpiredSession() async throws {
+        // Given
+        let session = Session(accessToken: "at", refreshToken: "rt", expiresAt: Date().addingTimeInterval(20))
+        let apiRequest = FakePostRequest()
+        var request = URLRequest.dummy
+        
+        keychain.retrieveToBeReturned = session
+        requestBuilder.makeURLRequestToBeReturned = .dummy
+        
+        do {
+            // When
+            try await sut.adapt(&request, apiRequest: apiRequest)
+            
+            // Then
+            #expect(apiClient.sendAsyncRequestCalledCount == 0)
+            #expect(requestBuilder.makeURLRequestCallCount == 0)
+            #expect(keychain.saveCallCount == 0)
+            #expect(keychain.retrieveCallCount == 1)
+            #expect(request.headers.contains(.authorization(bearerToken: "at")))
+        } catch {
+            Issue.record("API error should be returned")
+        }
+    }
 }
 
