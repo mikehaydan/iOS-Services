@@ -122,21 +122,26 @@ struct SessionHandlerTests {
         
         do {
             // When
-            async let result1 = sut.refresh(session: oldSession)
-            async let result2 = sut.refresh(session: oldSession)
-            async let result3 = sut.refresh(session: oldSession)
-            async let result4 = sut.refresh(session: oldSession)
-            
-            let sessions = try await (result1, result2, result3, result4)
+            let sessions = try await withThrowingTaskGroup(of: Session.self, returning: [Session].self) { group in
+                for _ in 0..<15 {
+                    group.addTask(operation: {
+                        // When
+                        try await sut.refresh(session: oldSession)
+                    })
+                }
+                
+                var sessions: [Session] = []
+                for try await session in group {
+                    sessions.append(session)
+                }
+                
+                return sessions
+            }
             
             // Then
             #expect(requestBuilder.makeURLRequestCallCount == 1)
             #expect(keychain.saveCallCount == 1)
-            
-            #expect(sessions.0 == newSession)
-            #expect(sessions.1 == newSession)
-            #expect(sessions.2 == newSession)
-            #expect(sessions.3 == newSession)
+            #expect(sessions.allSatisfy { $0 == newSession } )
         } catch {
             Issue.record("Error should not be returned")
         }
