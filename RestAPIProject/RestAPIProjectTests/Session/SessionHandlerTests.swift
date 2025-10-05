@@ -9,6 +9,7 @@ import Foundation
 import Testing
 @testable import RestAPIProject
 
+@Suite("SessionHandler tests")
 struct SessionHandlerTests {
     
     // MARK: - Properties

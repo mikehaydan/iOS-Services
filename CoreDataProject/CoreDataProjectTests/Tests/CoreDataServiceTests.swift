@@ -9,6 +9,7 @@ import CoreData
 import Testing
 @testable import CoreDataProject
 
+@Suite("CoreDataService tests")
 struct CoreDataServiceTests {
     
     // MARK: - Properties

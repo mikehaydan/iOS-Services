@@ -9,6 +9,7 @@
 import Testing
 import Foundation
 
+@Suite("RESTClient tests")
 struct RESTClientTests {
     
     // MARK: - Properties

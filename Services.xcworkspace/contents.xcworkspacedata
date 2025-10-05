@@ -224,9 +224,6 @@
                location = "group:RESTClientTests.swift">
             </FileRef>
          </Group>
-         <FileRef
-            location = "group:RestAPIProjectTests.swift">
-         </FileRef>
       </Group>
    </Group>
    <Group
