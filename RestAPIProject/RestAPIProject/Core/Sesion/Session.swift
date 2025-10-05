@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Session: Codable {
+struct Session: Codable, Equatable {
     
     private enum CodingKeys: CodingKey {
         case accessToken

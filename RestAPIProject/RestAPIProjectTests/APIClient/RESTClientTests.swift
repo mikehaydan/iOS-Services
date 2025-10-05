@@ -14,6 +14,7 @@ struct RESTClientTests {
     // MARK: - Properties
     
     var sut: RESTClient!
+    
     var session: URLSessionSpy!
 
     // MARK: - Lifecycle

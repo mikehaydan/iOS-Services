@@ -15,7 +15,7 @@ protocol AppLogger: AnyObject {
 final class AppLoggerFactory {
     nonisolated(unsafe) static let logger: AppLogger = {
         #if DEBUG
-        return AppLoggerImpl.shared
+        return NSClassFromString("XCTestCase") != nil ? NullAppLogger() : AppLoggerImpl.shared
         #else
         return NullAppLogger()
         #endif

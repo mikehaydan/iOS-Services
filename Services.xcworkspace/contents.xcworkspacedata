@@ -199,7 +199,23 @@
                <FileRef
                   location = "group:URLSessionSpy.swift">
                </FileRef>
+               <FileRef
+                  location = "group:KeychainSpy.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:APIClientSpy.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:URLRequestBuilderSpy.swift">
+               </FileRef>
             </Group>
+         </Group>
+         <Group
+            location = "group:Session"
+            name = "Session">
+            <FileRef
+               location = "group:SessionHandlerTests.swift">
+            </FileRef>
          </Group>
          <Group
             location = "group:APIClient"
