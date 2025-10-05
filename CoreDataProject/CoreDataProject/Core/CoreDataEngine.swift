@@ -8,13 +8,13 @@
 import CoreData
 
 final class CoreDataEngine {
-    
+
     // MARK: - Properties
-    
+
     let persistentContainer: PersistentContainer
-    
+
     // MARK: - Lifecycle
-    
+
     init(
         storeName: String,
         useInMemoryStore: Bool = false,
@@ -23,19 +23,19 @@ final class CoreDataEngine {
         self.persistentContainer = persistentContainer
         persistentContainer.setupStore(storeName: storeName, inMemory: useInMemoryStore)
     }
-    
+
     // MARK: - Public
-    
+
     func performBackgroundTask(
-        _ block:  @escaping (_ context: NSManagedObjectContext) throws -> Void) async throws {
+        _ block: @escaping (_ context: NSManagedObjectContext) throws -> Void) async throws {
         try await performBackgroundTask(save: false, block)
     }
-    
+
     func performBackgroundTaskAndSave(
-        _ block:  @escaping (_ context: NSManagedObjectContext) throws -> Void) async throws {
+        _ block: @escaping (_ context: NSManagedObjectContext) throws -> Void) async throws {
         try await performBackgroundTask(save: true, block)
     }
-    
+
     func fetch<T: NSFetchRequestResult>(
         request: NSFetchRequest<T>
     ) async throws -> [T] {
@@ -43,7 +43,7 @@ final class CoreDataEngine {
             return try self.persistentContainer.viewContext.fetch(request)
         }
     }
-    
+
     func delete<T: NSManagedObject>(
         request: NSFetchRequest<T>
     ) async throws {
@@ -52,24 +52,24 @@ final class CoreDataEngine {
             objects.forEach { context.delete($0) }
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func performBackgroundTask(
         save: Bool,
-        _ block:  @escaping (_ context: NSManagedObjectContext) throws -> Void) async throws {
+        _ block: @escaping (_ context: NSManagedObjectContext) throws -> Void) async throws {
         try await persistentContainer.performBackgroundTask { context in
             try block(context)
-            
+
             if save {
                 try self.save(context)
             }
         }
     }
-    
+
     private func save(_ context: NSManagedObjectContext) throws {
         guard context.hasChanges else { return }
-        
+
         do {
             try context.save()
         } catch {

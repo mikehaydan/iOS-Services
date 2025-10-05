@@ -8,18 +8,18 @@
 import Foundation
 
 final class KeychainImpl: Keychain {
-    
+
     // MARK: - Properties
-    
+
     private let lock = NSLock()
-    
+
     // MARK: - Public
-    
+
     @discardableResult
     func save<D: KeychainRepresentable>(_ data: D, for identifier: String) -> Bool {
         lock.lock()
         defer { lock.unlock() }
-        
+
         guard let data = data.data else { return false }
         var query = [
             kSecClass as String: kSecClassInternetPassword as String,
@@ -37,12 +37,12 @@ final class KeychainImpl: Keychain {
 
         return false
     }
-    
+
     @discardableResult
     func retrieve<D: KeychainRepresentable>(for identifier: String) -> D? {
         lock.lock()
         defer { lock.unlock() }
-        
+
         let query = [
             kSecClass as String: kSecClassInternetPassword as String,
             kSecAttrServer as String: D.attrServer,
@@ -66,7 +66,7 @@ final class KeychainImpl: Keychain {
 
         return credential
     }
-    
+
     @discardableResult
     func clear<D: KeychainRepresentable>(_ type: D.Type, for identifier: String) -> Bool {
         lock.lock()

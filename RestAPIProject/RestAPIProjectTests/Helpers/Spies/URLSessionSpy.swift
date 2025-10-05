@@ -9,7 +9,7 @@ import Foundation
 @testable import RestAPIProject
 
 final class URLSessionSpy: URLSessionProtocol {
-    
+
     var dataForRequestCalledCount = 0
     var dataForRequestErrorToBeReturned: Error?
     var dataForRequestResponseToBeReturned: (Data, URLResponse)!
@@ -20,8 +20,7 @@ final class URLSessionSpy: URLSessionProtocol {
         }
         return dataForRequestResponseToBeReturned
     }
-    
-    
+
     var startDataTaskCallCount = 0
     var response: (Data?, URLResponse?, (any Error)?)?
     var taskCancellableToBeReturned: TaskCancellable!
@@ -30,9 +29,8 @@ final class URLSessionSpy: URLSessionProtocol {
         if let response = response {
             completionHandler(response.0, response.1, response.2)
         }
-        
+
         return taskCancellableToBeReturned
     }
-    
-    
+
 }

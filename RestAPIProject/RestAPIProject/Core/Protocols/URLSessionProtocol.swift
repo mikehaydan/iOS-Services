@@ -22,7 +22,7 @@ extension URLSession: URLSessionProtocol {
     func startDataTask(with request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, (any Error)?) -> Void) -> any TaskCancellable {
         let task = self.dataTask(with: request, completionHandler: completionHandler)
         task.resume()
-        
+
         return task
     }
 }

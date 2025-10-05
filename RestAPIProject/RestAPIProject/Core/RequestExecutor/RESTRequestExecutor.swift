@@ -8,15 +8,15 @@
 import Foundation
 
 final class RESTRequestExecutor: RequestExecutor {
-    
+
     // MARK: - Properties
-    
+
     let apiClient: APIClient
     let requestBuilder: URLRequestBuilder
     let sessionAdapter: SessionAdapter
-    
+
     // MARK: - LifeCycle
-    
+
     init(
         apiClient: APIClient,
         requestBuilder: URLRequestBuilder,
@@ -26,23 +26,23 @@ final class RESTRequestExecutor: RequestExecutor {
         self.requestBuilder = requestBuilder
         self.sessionAdapter = sessionAdapter
     }
-    
+
     // MARK: - Public
-    
+
     func execute<R: APIRequest>(_ request: R) async throws -> R.Response {
         guard var urlRequest = requestBuilder.makeURLRequest(from: request) else {
             throw APIError.invalidRequest
         }
-                
+
         if request.authorizationRequired {
             return try await performAuthenticatedRequest(request, urlRequest: &urlRequest)
         } else {
             return try await apiClient.send(request: urlRequest)
         }
     }
-    
+
     // MARK: - Private
-    
+
     func performAuthenticatedRequest<R: APIRequest>(
         _ request: R,
         urlRequest: inout URLRequest,

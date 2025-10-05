@@ -14,16 +14,6 @@ struct HTTPHeader: Hashable, Sendable {
 
     /// Value of the header.
     let value: String
-
-    /// Creates an instance from the given `field` and `value`.
-    ///
-    /// - Parameters:
-    ///   - field:  The field of the header.
-    ///   - value: The value of the header.
-    init(field: String, value: String) {
-        self.field = field
-        self.value = value
-    }
 }
 
 extension HTTPHeader: CustomStringConvertible {

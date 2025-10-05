@@ -13,7 +13,7 @@ protocol URLRequestBuilder: Sendable {
 }
 
 struct URLRequestBuilderImpl: URLRequestBuilder {
-    
+
     static let defaultBuilder: any URLRequestBuilder = {
         URLRequestBuilderImpl(baseURL: URL(string: "https://dummyjson.com")!)
     }()

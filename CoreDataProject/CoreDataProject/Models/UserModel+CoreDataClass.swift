@@ -11,7 +11,7 @@ import CoreData
 
 @objc(UserModel)
 public class UserModel: NSManagedObject, ManagedObject {
-    
+
     var user: User {
         get {
             User(name: name, surname: surname)

@@ -10,14 +10,14 @@ import CoreData
 import SwiftUI
 
 final class ViewModel: ObservableObject {
-    
+
     enum Constants {
         static let modelName = "CoreDataModel"
         static let storeName = "coreDataStore"
     }
-    
+
     let storageService: CoreDataService
-    
+
     init() {
         let engine = CoreDataEngine(
             storeName: Constants.modelName,
@@ -26,9 +26,9 @@ final class ViewModel: ObservableObject {
         )
         self.storageService = CoreDataService(engine: engine)
     }
-    
+
     @Published var users: [User] = []
-    
+
     @MainActor
     func save(name: String, surname: String) {
         Task { [weak self] in
@@ -43,7 +43,7 @@ final class ViewModel: ObservableObject {
             }
         }
     }
-    
+
     @MainActor
     func getAllUsers() {
         Task {
@@ -55,7 +55,7 @@ final class ViewModel: ObservableObject {
             }
         }
     }
-    
+
     @MainActor
     func delete() {
         Task { [weak self] in
@@ -67,7 +67,7 @@ final class ViewModel: ObservableObject {
             }
         }
     }
-    
+
     @MainActor
     func update() {
         Task { [weak self] in

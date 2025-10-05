@@ -10,7 +10,7 @@ import CoreData
 
 protocol PersistentContainer: AnyObject {
     var viewContext: NSManagedObjectContext { get }
-    
+
     func setupStore(storeName: String, inMemory: Bool)
     func performBackgroundTask<T>(_ block: @escaping (NSManagedObjectContext) throws -> T) async rethrows -> T
 }
@@ -24,7 +24,7 @@ extension PersistentContainer {
 extension NSPersistentContainer: PersistentContainer {
     func setupStore(storeName: String, inMemory: Bool) {
         let storeDescription: NSPersistentStoreDescription
-        
+
         if inMemory {
             storeDescription = NSPersistentStoreDescription()
             storeDescription.type = NSInMemoryStoreType
@@ -36,11 +36,11 @@ extension NSPersistentContainer: PersistentContainer {
             storeDescription = NSPersistentStoreDescription(url: storeURL)
             storeDescription.type = NSSQLiteStoreType
         }
-        
+
         storeDescription.shouldMigrateStoreAutomatically = true
         storeDescription.shouldInferMappingModelAutomatically = true
         persistentStoreDescriptions = [storeDescription]
-        
+
         loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Failed to load Core Data store: \(error)")
@@ -48,7 +48,7 @@ extension NSPersistentContainer: PersistentContainer {
                 print("Core Data SQLite store loaded at: \(description.url?.absoluteString ?? "unknown")")
             }
         }
-        
+
         viewContext.automaticallyMergesChangesFromParent = true
     }
 }

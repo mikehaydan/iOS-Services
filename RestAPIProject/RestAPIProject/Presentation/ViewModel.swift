@@ -8,14 +8,14 @@
 import SwiftUI
 
 final class ViewModel: ObservableObject {
-    
+
     // MARK: - Properties
-    
+
     let apiService: APIService
     let keychain: Keychain
-    
+
     @Published var user: UserAPIModel?
-    
+
     init () {
         let apiClient = RESTClient(session: URLSession.shared)
         let requestBuilder = URLRequestBuilderImpl.defaultBuilder
@@ -26,13 +26,13 @@ final class ViewModel: ObservableObject {
             requestBuilder: requestBuilder,
             sessionAdapter: sessionHandler
         )
-        
+
         self.apiService = APIServiceImpl(requestExecutor: requestExecutor, sessionHandler: sessionHandler)
         self.keychain = keychain
     }
-    
+
     // MARK: - Public
-    
+
     @MainActor
     func login(userName: String, password: String) {
         Task {
@@ -45,7 +45,7 @@ final class ViewModel: ObservableObject {
             }
         }
     }
-    
+
     @MainActor
     func getUser() {
         Task {

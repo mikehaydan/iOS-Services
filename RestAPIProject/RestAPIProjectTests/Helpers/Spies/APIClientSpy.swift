@@ -9,7 +9,7 @@ import Foundation
 @testable import RestAPIProject
 
 final class APIClientSpy: APIClient {
-    
+
     var sendAsyncRequestCalledCount = 0
     var sendAsyncErrorToBeReturned: Error?
     var sendAsyncResponseToBeReturned: Decodable!
@@ -24,7 +24,7 @@ final class APIClientSpy: APIClient {
         }
         return sendAsyncResponseToBeReturned as! T
     }
-    
+
     var sendViaCompletionCalledCount = 0
     var sendViaCompletionTaskToBeReturned: TaskCancellable?
     var sendViaCompletionResult: Result<Decodable, APIError>!
@@ -37,7 +37,7 @@ final class APIClientSpy: APIClient {
         if let sendViaCompletionTaskToBeReturned = sendViaCompletionTaskToBeReturned {
             taskCreated?(sendViaCompletionTaskToBeReturned)
         }
-        
+
         switch sendViaCompletionResult {
         case .success(let response):
             completion(.success(response as! T))

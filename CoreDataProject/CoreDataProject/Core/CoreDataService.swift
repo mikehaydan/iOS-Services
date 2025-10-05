@@ -9,17 +9,17 @@ import Foundation
 import CoreData
 
 final class CoreDataService: AnyObject {
-    
+
     // MARK: - Properties
-    
+
     let engine: CoreDataEngine
-    
+
     init(engine: CoreDataEngine) {
         self.engine = engine
     }
-    
+
     // MARK: - Create
-    
+
     func create<MO: ManagedObject>(
         _ type: MO.Type,
         configure: @escaping (MO) -> Void
@@ -29,7 +29,7 @@ final class CoreDataService: AnyObject {
             configure(model)
         }
     }
-    
+
     func create<MO: ManagedObject>(
         _ type: MO.Type,
         count: Int,
@@ -42,22 +42,22 @@ final class CoreDataService: AnyObject {
             }
         }
     }
-    
+
     // MARK: - Fetch
-    
+
     func fetch<MO: ManagedObject>(
         _ type: MO.Type,
         configure: @escaping ((_ request: NSFetchRequest<MO>) -> Void)
     ) async throws -> [MO] {
         try await _fetch(type, configure: configure)
     }
-    
+
     func fetchAll<MO: ManagedObject>(
         _ type: MO.Type,
     ) async throws -> [MO] {
         try await _fetch(type, configure: nil)
     }
-    
+
     private func _fetch<MO: ManagedObject>(
         _ type: MO.Type,
         configure: ((_ request: NSFetchRequest<MO>) -> Void)?
@@ -66,22 +66,22 @@ final class CoreDataService: AnyObject {
         configure?(fetchRequest)
         return try await engine.fetch(request: fetchRequest)
     }
-    
+
     // MARK: - Delete
-    
+
     func delete<MO: NSManagedObject>(
         _ type: MO.Type,
         configure: @escaping ((_ request: NSFetchRequest<MO>) -> Void)
     ) async throws {
         try await _delete(type, configure: configure)
     }
-    
+
     func deleteAll<MO: NSManagedObject>(
         _ type: MO.Type,
     ) async throws {
        try await _delete(type, configure: nil)
     }
-    
+
     private func _delete<MO: NSManagedObject>(
         _ type: MO.Type,
         configure: ((_ request: NSFetchRequest<MO>) -> Void)?
@@ -90,9 +90,9 @@ final class CoreDataService: AnyObject {
         configure?(request)
         try await engine.delete(request: request)
     }
-    
+
     // MARK: - Update
-    
+
     func updateAll<MO: NSManagedObject>(
         _ type: MO.Type,
         configure: ((_ request: NSFetchRequest<MO>) -> Void)? = nil,
@@ -100,7 +100,7 @@ final class CoreDataService: AnyObject {
     ) async throws {
         try await _update(type, configure: nil, update: update)
     }
-    
+
     func update<MO: NSManagedObject>(
         _ type: MO.Type,
         configure: @escaping ((_ request: NSFetchRequest<MO>) -> Void),
@@ -108,7 +108,7 @@ final class CoreDataService: AnyObject {
     ) async throws {
         try await _update(type, configure: configure, update: update)
     }
-    
+
     private func _update<MO: NSManagedObject>(
         _ type: MO.Type,
         configure: ((_ request: NSFetchRequest<MO>) -> Void)?,
@@ -117,7 +117,7 @@ final class CoreDataService: AnyObject {
         try await engine.performBackgroundTaskAndSave { context in
             let request = NSFetchRequest<MO>(entityName: String(describing: MO.self))
             configure?(request)
-            
+
             let objects = try context.fetch(request)
             objects.forEach({ update($0) })
         }

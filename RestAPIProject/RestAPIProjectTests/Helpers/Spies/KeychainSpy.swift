@@ -9,7 +9,7 @@ import Foundation
 @testable import RestAPIProject
 
 final class KeychainSpy: Keychain {
-    
+
     var saveToBeReturned = true
     var saveCallCount = 0
     @discardableResult
@@ -17,7 +17,7 @@ final class KeychainSpy: Keychain {
         saveCallCount += 1
         return saveToBeReturned
     }
-    
+
     var retrieveToBeReturned: KeychainRepresentable!
     var retrieveCallCount = 0
     @discardableResult
@@ -25,7 +25,7 @@ final class KeychainSpy: Keychain {
         retrieveCallCount += 1
         return retrieveToBeReturned as? D
     }
-    
+
     var clearToBeReturned = true
     var clearCallCount = 0
     @discardableResult
