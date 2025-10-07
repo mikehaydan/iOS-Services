@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
    <Group
       location = "group:RestAPIProject"
       name = "RestAPIProject">
@@ -13,6 +16,13 @@
       name = "CoreDataProject">
       <FileRef
          location = "group:CoreDataProject.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:SwiftUICoordinatorPorject"
+      name = "SwiftUICoordinatorPorject">
+      <FileRef
+         location = "group:SwiftUICoordinatorPorject.xcodeproj">
       </FileRef>
    </Group>
 </Workspace>

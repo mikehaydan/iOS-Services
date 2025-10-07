@@ -22,6 +22,9 @@ Each service is implemented as a separate project to keep responsibilities clear
 - **RestAPIProject**  
   REST API Service with session handling.
 
+- **SwiftUICoordinatorPorject**  
+  Navigation Coordinator for SwiftUI app.
+
 *(More services will be added as the workspace grows.)*
 
 ---
