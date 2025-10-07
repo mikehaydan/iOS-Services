@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-enum AppFlow {
-    case flow1(Flow1CoordinatorImpl)
-    case flow2(Flow2CoordinatorImpl)
-    case none
-}
-
 protocol AppCoordinator: Coordinator, ObservableObject {
     var selectedFlow: AppFlow { get set }
 
