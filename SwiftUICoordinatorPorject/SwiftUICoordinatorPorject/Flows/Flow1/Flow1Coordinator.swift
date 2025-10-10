@@ -50,10 +50,9 @@ final class Flow1CoordinatorImpl: ObservableObject, Flow1Coordinator {
 
     // MARK: - Public
 
-    @ViewBuilder
-    var root: some View {
+    lazy var root: some View =  {
         Flow1CoordinatorRootView(coordinator: self)
-    }
+    }()
 
     @ViewBuilder
     func destination(for route: Flow1CoordinatorImpl.Route) -> some View {

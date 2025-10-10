@@ -35,10 +35,9 @@ final class Flow2CoordinatorImpl: ObservableObject, Flow2Coordinator {
 
     // MARK: - Public
 
-    @ViewBuilder
-    var root: some View {
+    lazy var root: some View = {
         Flow2CoordinatorRootView(coordinator: self)
-    }
+    }()
 
     func start() {
 
