@@ -24,6 +24,9 @@ Each service is implemented as a separate project to keep responsibilities clear
 
 - **SwiftUICoordinatorPorject**  
   Navigation Coordinator for SwiftUI app.
+  
+- **TestDoublesXcodeExtension**  
+  Xcode extension to generate Spy and Stub objects which are used for unit tests.
 
 *(More services will be added as the workspace grows.)*
 
