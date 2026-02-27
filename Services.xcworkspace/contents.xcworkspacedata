@@ -25,4 +25,43 @@
          location = "group:SwiftUICoordinatorPorject.xcodeproj">
       </FileRef>
    </Group>
+   <Group
+      location = "group:TestDoublesXcodeExtension"
+      name = "TestDoublesXcodeExtension">
+      <Group
+         location = "group:App"
+         name = "App">
+         <FileRef
+            location = "group:AppDelegate.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Info.plist">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:TestDoublesXcodeExtension.xcodeproj">
+      </FileRef>
+      <Group
+         location = "group:TestDoubles"
+         name = "TestDoubles">
+         <FileRef
+            location = "group:SourceEditorCommand.swift">
+         </FileRef>
+         <FileRef
+            location = "group:SpyStubGenerator.swift">
+         </FileRef>
+         <FileRef
+            location = "group:GenerateSpyStubCommand.swift">
+         </FileRef>
+         <FileRef
+            location = "group:ProtocolParser.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Info.plist">
+         </FileRef>
+         <FileRef
+            location = "group:SourceEditorExtension.swift">
+         </FileRef>
+      </Group>
+   </Group>
 </Workspace>
