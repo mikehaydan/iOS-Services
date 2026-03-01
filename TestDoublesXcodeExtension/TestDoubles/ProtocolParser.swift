@@ -20,6 +20,7 @@ struct ParsedProtocol {
 struct ParsedFunction {
     let name: String
     let fullSignature: String
+    let isStatic: Bool
     let isAsync: Bool
     let isThrowing: Bool
     let returnType: String?          // nil means Void
@@ -32,6 +33,7 @@ struct ParsedVariable {
     let name: String
     let typeName: String
     let isStatic: Bool
+    let isReadOnly: Bool  // true for `{ get }`, false for `{ get set }`
 }
 
 // MARK: - Parser
@@ -88,7 +90,7 @@ enum ProtocolParser {
             let stripped = text.td_stripped
 
             // @discardableResult on its own line precedes the func
-            if stripped.contains("@discardableResult") && !stripped.hasPrefix("func") {
+            if stripped.contains("@discardableResult") && !stripped.contains("func ") {
                 i += 1
                 if i < bodyLines.count {
                     let sig = collectFunctionSignature(from: bodyLines, startIndex: i)
@@ -96,7 +98,10 @@ enum ProtocolParser {
                         functions.append(f)
                     }
                 }
-            } else if stripped.hasPrefix("func ") || stripped.td_matches(#"\s+func\s+"#) {
+            } else if stripped.hasPrefix("func ")
+                   || stripped.hasPrefix("static func ")
+                   || stripped.hasPrefix("class func ")
+                   || stripped.td_matches(#"\s+func\s+"#) {
                 let sig = collectFunctionSignature(from: bodyLines, startIndex: i)
                 if let f = parseFunction(sig, isDiscardableResult: false) {
                     functions.append(f)
@@ -157,6 +162,7 @@ enum ProtocolParser {
     private static func parseFunction(_ signature: String, isDiscardableResult: Bool) -> ParsedFunction? {
         guard let name = extractCapture(#"func\s+(\w+)"#, from: signature) else { return nil }
 
+        let isStatic = signature.contains("static func") || signature.contains("class func")
         let isAsync = signature.contains(" async")
         let isThrowing = signature.contains(" throws")
 
@@ -172,6 +178,7 @@ enum ProtocolParser {
         return ParsedFunction(
             name: name,
             fullSignature: signature,
+            isStatic: isStatic,
             isAsync: isAsync,
             isThrowing: isThrowing,
             returnType: returnType,
@@ -191,13 +198,17 @@ enum ProtocolParser {
 
         var typePart = String(line[line.index(after: colonIdx)...]).td_stripped
 
+        // Determine if read-only: `{ get }` without `set`
+        let isReadOnly = typePart.contains("{ get }") ||
+                         (typePart.contains("{") && typePart.contains("get") && !typePart.contains("set"))
+
         // Strip trailing `{ get }` / `{ get set }` accessors
         if let braceIdx = typePart.firstIndex(of: "{") {
             typePart = String(typePart[..<braceIdx]).td_stripped
         }
         guard !typePart.isEmpty else { return nil }
 
-        return ParsedVariable(name: name, typeName: typePart, isStatic: isStatic)
+        return ParsedVariable(name: name, typeName: typePart, isStatic: isStatic, isReadOnly: isReadOnly)
     }
 
     // MARK: - Type Helpers
